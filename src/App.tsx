@@ -1,4 +1,4 @@
-import { Routes, Route, createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
+import { Routes, Route, createBrowserRouter, RouterProvider } from "react-router-dom";
 import Nav from "./components/Nav.tsx";
 import Home from "./components/Home.tsx";
 import Books from "./components/Books.tsx";
@@ -8,15 +8,14 @@ import Education from "./components/Education.tsx";
 import Experiences from "./components/Experiences.tsx";
 import About from "./components/About.tsx";
 import styled from "styled-components";
-import { HiArrowNarrowRight } from 'react-icons/hi';
+
 
 
 // Container component to handle layout styling
 const Container = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: #0a192f;
-    overflow: hidden;
+    
     @media (max-width: 750px) {
         flex-direction: column;
     }
@@ -28,7 +27,7 @@ const Main = styled.main`
     padding: 2%;
     width: 100%;
     margin-top: 2%;
-    overflow-x: hidden;
+   
     @media (max-width: 750px) {
         width: 100%;
     }
@@ -44,13 +43,13 @@ function Root() {
                 <Nav />
                 <Main>
                     <Routes>
-                        <Route path={`/`} element={<Home />} />
+                        <Route path={`/`} element={<Home />}/>
                         <Route path={`/Books`} element={<Books />} />
                         <Route path={`/Projects`} element={<Projects />} />
                         <Route path={`/Courses`} element={<Courses />} />
                         <Route path={`/Education`} element={<Education />} />
                         <Route path={`/Experiences`} element={<Experiences />} />
-                        <Route path={`/About`} element={<About />} />
+                        <Route path="/About" element={<About  />} />
                     </Routes>
                 </Main>
             </Container>
@@ -69,7 +68,11 @@ const router = createBrowserRouter(
 
 // Main App component that provides the router to the application
 export default function App() {
+    
     return (
+        <>
+        
         <RouterProvider router={router} />
+        </>
     )
 }

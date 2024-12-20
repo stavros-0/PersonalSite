@@ -1,40 +1,30 @@
 import styled from 'styled-components';
+import {useRef, useEffect} from 'react';
 
-
-const HomeContainer = styled.div `
-    height: 88vh;
-    width: 100vw;
+const HomeContainer = styled.div`
     display: flex;
-    background-color: #0a192f;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    width: 100%;
+    margin-top: 12%;
 `;
 
 const Outline = styled.div`
     display: flex;
-    flex-direction: column;
-    
-    justify-content: flex-start;
-    align-items: center;
-    width: 50%;
-    
+    width: 40%;
+    min-height: 400px;
     background-color: lightblue;
     filter: drop-shadow(5px 5px); 
+    padding: 2rem;
     @media (max-width: 768px){
         width: 70%;
-        
+        min-height: 350px;
     }
 `;
-const Outline2 = styled.div `
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    
 
-`;
-const Paragraph = styled.p `
+
+const Paragraph = styled.p`
     color: black;
     font-size: 2.25rem;
     font-weight: 700;
@@ -42,30 +32,38 @@ const Paragraph = styled.p `
     display: flex;
     flex-direction: column;
     border-bottom: 4px solid #06b6d4;
+    margin-bottom: 1rem;
 `;
+
 const Paragraph2 = styled.p`
     color: black;
     font-size: 1.5rem;
     text-align: center;
-    
+    margin-top: 2rem;
+    line-height: 1.6;
 `;
+
 const ParagraphContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center; 
-    
-    max-width: 60%;
-    
-    
+    width: 100%;
 `;
 
 export default function About() {
-    
-    return(
+    const aboutRef = useRef(null);
+    useEffect(() => {
+        
+        if (aboutRef.current) {
+            console.log("Scrolling");
+            (aboutRef.current as HTMLElement).scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }, []);
 
-        <HomeContainer id="about">
+    return (
+        <HomeContainer ref={aboutRef}>
             <Outline>
-                <Outline2>
+                
                     <ParagraphContainer>
                     <Paragraph>About</Paragraph>
                     <Paragraph2> I have experience in Software Development and have built Full Stack projects.
@@ -73,7 +71,7 @@ export default function About() {
                         This website was made 100% using React and it's hosted on Vercel. 
                     </Paragraph2>
                     </ParagraphContainer>
-                </Outline2>
+               
 
             </Outline>
         </HomeContainer>

@@ -1,30 +1,25 @@
 import styled from 'styled-components';
 import { HiArrowNarrowRight } from 'react-icons/hi';
-import { Link } from "react-router-dom";
-import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
+import {useNavigate} from "react-router-dom";
 
-
-
-const HomeContainer = styled.div `
-    background-color: #0a192f;
-    align-items: center;
-    justify-content: flex-end;
-   
+const HomeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
 `;
+
+
 
 const Div1 = styled.div `
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100vw;
     padding: 0 1rem;
       
     @media (max-width: 768px){
         flex-direction: column;
-        height: 100vh;
-        
+        height: 100%;
     }
 `;
 const Div2 = styled.div `
@@ -61,7 +56,7 @@ const Paragraph = styled.p `
     color: #6b7280;
     max-width: 25rem;
     font-size: 1.25rem;
-    margin-top: 0;
+    margin-top: -2rem;
 
     @media (max-width: 768px){
        
@@ -73,7 +68,8 @@ const PictureContainer = styled.img `
     border-radius: 1rem;
     margin-left: 2%;
     margin-top: 3%;
-    width: 25%;
+    width: 20%;
+   
     filter: drop-shadow(5px 5px); 
     flex-direction: row;
     order: 2;
@@ -82,13 +78,14 @@ const PictureContainer = styled.img `
         margin-left: 0;
         margin-top: 5%;
         width: 40%;
+        max-width: 40%;
         order: 1;
         
         
         
     }
 `;
-const StyledLink = styled(Link)`
+const StyledButton = styled.button`
   display: flex; 
   align-items: center;  
    
@@ -111,9 +108,13 @@ const StyledLink = styled(Link)`
   }
 `;
 export default function Home() {
+    const navigate = useNavigate();
+    const handleScrollToAbout = () => {
+        navigate("/about");
+    }
         return (
         <HomeContainer>
-            <ScrollToHashElement behavior="smooth"/>
+            
             <Div1>
                 <Div2>
                     <Header>
@@ -124,12 +125,12 @@ export default function Home() {
                         I have also experimented with Data ETL Pipelines and Data visualization projects.
                         This website was made 100% using React and it's hosted on Vercel. 
                     </Paragraph>
-                    <StyledLink to={`/About`} >
-                    About Me 
+                    <StyledButton onClick={handleScrollToAbout}>
+                        About Me 
                         <span>
                             <HiArrowNarrowRight size={25} className="arrow" />
                         </span>
-                    </StyledLink>
+                    </StyledButton>
                 </Div2>
                 <PictureContainer src={`headshot2.png`} alt="Stavros picture" />
             </Div1>

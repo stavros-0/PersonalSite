@@ -5,21 +5,31 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #0a192f;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+html {
+  scroll-behavior: smooth;
+}
 html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  
 }
 
+.smooth-scroll {
+  transition: all 0.5s ease;
+}
+
+[data-scroll] {
+  scroll-margin-top: 2rem;
+}
 
 a {
   font-weight: 500;
@@ -32,10 +42,14 @@ a:hover {
 
 body {
   margin: 0;
+  min-width: 320px;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {

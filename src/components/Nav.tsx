@@ -40,7 +40,9 @@ interface UnorderedMobileProps {
     isOpen: boolean;
   }
 
-const UnorderedMobile = styled.ul<UnorderedMobileProps>`
+  const UnorderedMobile = styled.ul.withConfig({
+    shouldForwardProp: (prop) => prop !== "isOpen",
+  })<UnorderedMobileProps>`
   position: absolute;
   top: 0;
   left: 0;
