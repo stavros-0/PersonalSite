@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { HiArrowNarrowRight } from 'react-icons/hi';
 import {useNavigate} from "react-router-dom";
+import {motion} from 'framer-motion';
 
 const HomeContainer = styled.div`
     display: flex;
@@ -107,13 +108,16 @@ const StyledButton = styled.button`
     transform: rotate(90deg); 
   }
 `;
+
 export default function Home() {
     const navigate = useNavigate();
-    const handleScrollToAbout = () => {
-        navigate("/about");
-    }
+    console.log("Navigating to /About"); 
+    const navigateAndScroll = (id: string) => {
+    navigate('/About', { state: { scrollToId: id } });
+    };
         return (
-        <HomeContainer>
+            
+        <HomeContainer id="home">
             
             <Div1>
                 <Div2>
@@ -125,16 +129,17 @@ export default function Home() {
                         I have also experimented with Data ETL Pipelines and Data visualization projects.
                         This website was made 100% using React and it's hosted on Vercel. 
                     </Paragraph>
-                    <StyledButton onClick={handleScrollToAbout}>
-                        About Me 
-                        <span>
-                            <HiArrowNarrowRight size={25} className="arrow" />
-                        </span>
+                    <StyledButton onClick={() => navigateAndScroll('About')}>
+                        About Me
+                    <span>
+                    <HiArrowNarrowRight size={25} className="arrow" />
+                    </span>
                     </StyledButton>
                 </Div2>
                 <PictureContainer src={`headshot2.png`} alt="Stavros picture" />
             </Div1>
             
         </HomeContainer>
+        
     );
 }

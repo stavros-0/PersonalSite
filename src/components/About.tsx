@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import {useRef, useEffect} from 'react';
+import {useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
+import {motion} from 'framer-motion';
 
 const HomeContainer = styled.div`
     display: flex;
@@ -51,17 +53,29 @@ const ParagraphContainer = styled.div`
 `;
 
 export default function About() {
-    const aboutRef = useRef(null);
+    const location = useLocation();
+    console.log(location.state);
     useEffect(() => {
-        
-        if (aboutRef.current) {
-            console.log("Scrolling");
-            (aboutRef.current as HTMLElement).scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-    }, []);
-
+    console.log("Location State:", location.state);
+    if (location.state?.scrollToId) {
+      const element = document.getElementById(location.state.scrollToId);
+      console.log("Element Found:", element);
+      
+      if (element) {
+        console.log("Bounding Rect:", element.getBoundingClientRect());
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [location]);
+ 
     return (
-        <HomeContainer ref={aboutRef}>
+        <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+    >
+        <HomeContainer id="About">
             <Outline>
                 
                     <ParagraphContainer>
@@ -75,5 +89,6 @@ export default function About() {
 
             </Outline>
         </HomeContainer>
+        </motion.div>
 )
 }

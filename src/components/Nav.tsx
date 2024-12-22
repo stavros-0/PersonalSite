@@ -129,9 +129,7 @@ export default function Nav() {
                 <li >
                     <StyledLink to={`/`}>Home</StyledLink>
                 </li>
-                <li>
-                    <StyledLink to={`/About`}>About Me</StyledLink>
-                </li>
+                
                 <li>
                     <StyledLink to={`/Projects`}>Projects</StyledLink>
                 </li>
@@ -141,9 +139,7 @@ export default function Nav() {
                 <li>
                     <StyledLink to={`/Experiences`}>Experiences</StyledLink>
                 </li>
-                <li>
-                    <StyledLink to={`/Contact`}>Contact</StyledLink>
-                </li>
+                
                 <li>
                     <StyledLink to={`/Books`}>Books</StyledLink>
                 </li>
@@ -170,9 +166,7 @@ export default function Nav() {
                 <List>
                     <Link onClick={handleClick} to={`/Experiences`}>Experiences</Link>
                 </List>
-                <List>
-                    <Link onClick={handleClick} to={`/About`}>About Me</Link>
-                </List>
+                
             </UnorderedMobile>
             <Socials>
                 <ul>
